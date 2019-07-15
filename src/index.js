@@ -1,17 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import CalculatorContainer from './containers/CalculatorContainer';
-import Test from './containers/Test';
+import Graph from './containers/Graph';
 import reducer from './reducers'
 
-const store = createStore(reducer)
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk, logger)
+)
 
 render(
   <Provider store={store}>
     <CalculatorContainer />
-    <Test />
+    <Graph />
   </Provider>,
   document.getElementById('root')
 )
