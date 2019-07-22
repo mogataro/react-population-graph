@@ -1,16 +1,23 @@
 import * as actionTypes from '../utils/actionTypes';
 
 const initialState = {
-  prefectures: ['ccc']
+  prefectures: [],
+  prefCodes: []
 };
 
 const prefectures = (state = initialState, action) => {
   if (action.type === actionTypes.Fetch_Prefectures) {
-    console.log('bbb')
-    console.log(action.payload)
     return {
+      ...state,
       prefectures: action.payload
     };
+  } else if (action.type === actionTypes.Update_PrefCodes) {
+    const array = state.prefCodes
+    array.push(action.payload)
+    return {
+      ...state,
+      prefCodes: array
+    }
   } else {
     return state;
   }

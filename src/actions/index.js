@@ -19,32 +19,21 @@ export const onClearClick = () => ({
   resultValue: 0,
 });
 
-// export const fetchPrefectures = () => async(dispatch) => {
-//   const data = await axios.get(RESAS_ENDPOINT + 'v1/prefectures', {
-//     headers: {
-//       'X-API-KEY': API_KEY
-//     }
-//   })
-//   dispatch({
-//     type: actionTypes.Fetch_Prefectures,
-//     payload: data
-//   })
-// }
+
 
 export const fetchPrefectures = () => async (dispatch) => {
-  console.log('aaa')
   const { data } = await axios.get(RESAS_ENDPOINT + '/v1/prefectures', {
     headers: {
       'X-API-KEY': API_KEY
     }
   })
-  console.log(data.result)
   dispatch({
     type: actionTypes.Fetch_Prefectures,
     payload: data.result
   })
-  // return {
-  //   type: actionTypes.Fetch_Prefectures,
-  //   payload: data.result
-  // }
 }
+
+export const updatePrefCodes = (newPrefCodes) => ({
+  type: actionTypes.Update_PrefCodes,
+  payload: newPrefCodes
+})

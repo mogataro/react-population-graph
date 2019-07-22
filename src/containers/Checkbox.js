@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import * as actions from '../actions';
-import NumBtn from '../components/NumBtn';
-import PlusBtn from '../components/PlusBtn';
-import MinusBtn from '../components/MinusBtn';
-import ClearBtn from '../components/ClearBtn';
-import Result from '../components/Result';
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-class Graph extends Component {
+class Checkboxes extends Component {
   // ページロード時にactions.fetchPrefectures()を実行する
   componentDidMount() {
     const { actions } = this.props
@@ -18,14 +14,28 @@ class Graph extends Component {
   render() {
     const { prefectures, actions } = this.props;
     const prefArray = prefectures.prefectures
-    const prefNames = prefArray.map((p, i) => <p key={i}>{p.prefName}</p>)
-    const hoge = '<p>ほげ</p>'
+    const prefNames = prefArray.map((p, i) => {
+      return (
+        <FormControlLabel
+        control={
+          <Checkbox
+            key={i}
+            checked={false}
+            value={p.prefCode}
+            inputProps={{
+              'aria-label': 'primary checkbox',
+            }}
+          />
+        }
+        label={p.prefName}
+      />
+      )
+    })
+    // const prefNames = prefArray.map((p, i) => <p key={i}>{p.prefName}</p>)
     return (
       <div>
         <div>
           <p>RESAS API</p>
-          <button onClick={() => actions.fetchPrefectures()}>都道府県を取得</button>
-          <div dangerouslySetInnerHTML={{ __html: hoge }}></div>
           {prefNames}
         </div>
       </div>
@@ -34,6 +44,7 @@ class Graph extends Component {
 }
 
 const mapState = (state, ownProps) => ({
+  //- ownPropsとは現在のpropsを表す
   prefectures: state.prefectures
 });
 
@@ -43,4 +54,4 @@ function mapDispatch(dispatch) {
   }
 }
 
-export default connect(mapState, mapDispatch)(Graph);
+export default connect(mapState, mapDispatch)(Checkboxes);
