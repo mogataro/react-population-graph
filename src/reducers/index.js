@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import calculator from './calculator';
-import prefectures from './prefectures';
+import graphs from './graphs';
 
 const reducer = combineReducers({
   calculator,
-  prefectures
+  graphs
 });
 export default reducer;

@@ -37,3 +37,8 @@ export const updatePrefCodes = (newPrefCodes) => ({
   type: actionTypes.Update_PrefCodes,
   payload: newPrefCodes
 })
+
+export const updateSelected = (index) => ({
+  type: actionTypes.Update_Selected,
+  payload: index
+})

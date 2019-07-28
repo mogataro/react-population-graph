@@ -5,15 +5,15 @@ import * as actions from '../actions';
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-class Checkboxes extends Component {
+class CheckboxList extends Component {
   // ページロード時にactions.fetchPrefectures()を実行する
   componentDidMount() {
     const { actions } = this.props
     actions.fetchPrefectures()
   }
   render() {
-    const { prefectures, actions } = this.props;
-    const prefArray = prefectures.prefectures
+    const { graphs, actions } = this.props;
+    const prefArray = graphs.prefectures
     const prefNames = prefArray.map((p, i) => {
       return (
         <FormControlLabel
@@ -45,7 +45,7 @@ class Checkboxes extends Component {
 
 const mapState = (state, ownProps) => ({
   //- ownPropsとは現在のpropsを表す
-  prefectures: state.prefectures
+  graphs: state.graphs
 });
 
 function mapDispatch(dispatch) {
@@ -54,4 +54,4 @@ function mapDispatch(dispatch) {
   }
 }
 
-export default connect(mapState, mapDispatch)(Checkboxes);
+export default connect(mapState, mapDispatch)(CheckboxList);

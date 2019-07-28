@@ -12,7 +12,7 @@ class Graph extends Component {
     super();
     this.state = {
       selected: Array(47).fill(false),
-      prefectures: {},
+      prefectures: [],
       series: []
     };
     this._changeSelection = this._changeSelection.bind(this);
